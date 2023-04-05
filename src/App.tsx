@@ -1,25 +1,58 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useContext, useState, createContext } from 'react';
+import Login from './pages/Login';
+import CarsList from './pages/CarsList';
+import Register from './pages/Register';
+import Container from '@mui/material/Container/Container';
+import { HashRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Chat from './pages/Chat';
 
-function App() {
+export type AuthContextType = {
+  authConextState: AuthStateType
+  setAuthContextState: (newValue: AuthStateType) => void
+}
+
+export type AuthStateType = {
+  isAuth: boolean,
+  username: string,
+  userId: string
+}
+
+export const authContext = createContext<AuthContextType | null>(null)
+
+const App = () => {
+
+  const [authConextState, setAuthContextState] = useState<AuthStateType>({
+    isAuth: false,
+    username: "",
+    userId: ""
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <authContext.Provider value={{authConextState, setAuthContextState}}>
+        <HashRouter>
+            <Routes>
+              <Route path='/' element={<Home />}/>
+              {authConextState.isAuth 
+                ?   <>
+                    <Route path ='/cars' element = {<CarsList/>}/>
+                    <Route path ='/chat/*' element = {<Chat/>}/>
+                </>
+
+                : <>
+                  <Route path='/login' element={<Login />}/>
+                  <Route path='/reg' element={<Register />}/>
+                </>
+              }
+
+
+
+            </Routes>
+        </HashRouter>
+      </authContext.Provider>
+    </Container>
+
   );
 }
 
