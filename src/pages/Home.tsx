@@ -43,9 +43,9 @@ const Home = () => {
             minHeight: "10vh"
             
           }}>
-            <Link to="/login" style={{ color: "blue", marginRight: "20px" }}>Login</Link>
-            <Link to="/reg" style={{ color: "blue", marginRight: "20px" }}>Registration</Link>
-            <Link to="/cars" style={{ color: "blue" }}>List of cars</Link>
+            <Link to="/login" style={{ color: "white", marginRight: "20px" }}>Login</Link>
+            <Link to="/reg" style={{ color: "white", marginRight: "20px" }}>Registration</Link>
+            <Link to="/cars" style={{ color: "white" }}>List of cars</Link>
           </Box>
         </Box>
       </>

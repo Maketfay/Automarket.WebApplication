@@ -12,7 +12,7 @@ const Login:React.FC = () => {
         username: ""
     })
 
-    const navigate = useNavigation();
+    //const navigate = useNavigation();
 
     const a = useContext(authContext);
 
@@ -28,7 +28,7 @@ const Login:React.FC = () => {
 
             a?.setAuthContextState({
                 username: loginData.username,
-                userId: response?.userId,
+                userId: response.userId,
                 isAuth: true
             })
 

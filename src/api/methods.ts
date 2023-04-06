@@ -27,8 +27,15 @@ axios.interceptors.response.use(function (response) {
     return Promise.reject(error);
   });
 
-export type Message = {
+export type MessageRequestType = {
+  chatId: string,
+  username: string,
+  message: string
+}
 
+export type MessageType = {
+  username: string,
+  message: string  
 }
 
 export type AuthDataType = {
@@ -74,9 +81,11 @@ export type ChatConnectionType={
 
 export type CarsListType = CarItemType[]
 
+export type MessageListType = MessageType[]
+
 export const methods = {
-    recieveMessage(data: Message) {
-        return api.get("/getMessage", {params: data})
+    getMessageList(data: any) {
+        return api.get("/getMessages",  {params: data})
     },
     login(data: AuthDataType) {
         return api.post<AuthResponseDataType>("/Users/authenticate", data)

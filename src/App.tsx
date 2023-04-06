@@ -37,7 +37,7 @@ const App = () => {
               {authConextState.isAuth 
                 ?   <>
                     <Route path ='/cars' element = {<CarsList/>}/>
-                    <Route path ='/chat/*' element = {<Chat/>}/>
+                    <Route path ='/chat/:chatId' element = {<Chat/>}/>
                 </>
 
                 : <>
@@ -45,8 +45,6 @@ const App = () => {
                   <Route path='/reg' element={<Register />}/>
                 </>
               }
-
-
 
             </Routes>
         </HashRouter>
