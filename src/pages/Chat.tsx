@@ -59,7 +59,7 @@ const Chat: React.FC = () => {
 
         setMessageRequest({...messageRequest, chatId: chatIdParam as string});
 
-        joinChatRoom(connectionData.userChat, connectionData.chatId, setConnection, setMessageList);
+        joinChatRoom(connectionData.userChat, connectionData.chatId, setConnection, setMessageList, messageList);
     }, [])
     
     const Message: React.FC<{messageData: MessageType}> = ({messageData}) => {

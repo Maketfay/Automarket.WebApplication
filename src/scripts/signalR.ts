@@ -2,7 +2,7 @@ import { HubConnection, HubConnectionBuilder, LogLevel } from "@microsoft/signal
 import { MessageListType, MessageRequestType } from "../api/methods";
 
 
-export const joinChatRoom = async(user:any, chat:any, setConnection:any, setMessageList: any)=>{
+export const joinChatRoom = async(user:any, chat:any, setConnection:any, setMessageList: any, messageList: any)=>{
     try
     {
         let accessToken = localStorage.getItem('accessToken');
@@ -18,7 +18,10 @@ export const joinChatRoom = async(user:any, chat:any, setConnection:any, setMess
                 console.log(message);
                 console.log(user);
                 
-                setMessageList((messages: any)=>[...messages, {user, message}]);
+                setMessageList([...messageList, {
+                    username: user,
+                    message: message  
+                }]);
             })
     
             connection.onclose(e=>{
